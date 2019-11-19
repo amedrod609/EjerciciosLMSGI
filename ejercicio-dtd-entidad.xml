@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE marvel SYSTEM "ejercicio-dtd-entidad.dtd">
+
+<marvel>
+    <superheroes>
+        <superheroe id="1" nombre="capi" color="carne"></superheroe>
+    </superheroes>
+    <supervillanos>
+        <supervillano id="2" nombre="thanos" color="lila"></supervillano>
+    </supervillanos>
+</marvel>

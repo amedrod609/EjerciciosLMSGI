@@ -1,0 +1,6 @@
+<!ELEMENT avengers (superheroes | supervillanos+ | peliculas?)*>
+<!ELEMENT superheroes (superheroe+)>
+<!ELEMENT superheroe EMPTY>
+<!ENTITY atributos SYSTEM "nombre ID #REQUIRED
+                            COLOR CDATA #IMPLIED
+                            arma CDATA ">

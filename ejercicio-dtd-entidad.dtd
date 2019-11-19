@@ -1,0 +1,10 @@
+<!ELEMENT marvel (superheroes, supervillanos)>
+<!ENTITY % lista "id CDATA #REQUIRED
+                            nombre CDATA #REQUIRED 
+                            color CDATA #IMPLIED">
+<!ELEMENT superheroes (superheroe)>
+<!ELEMENT superheroe (#PCDATA)>
+<!ATTLIST superheroe %lista;>
+<!ELEMENT supervillanos (supervillano)>
+<!ELEMENT supervillano (#PCDATA)>
+<!ATTLIST supervillano %lista;>

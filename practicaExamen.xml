@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE almacen SYSTEM "practicaExamen.dtd">
+
+<almacen>
+    <cocina numhabitacion="C1">
+        <campana id="a1" color="negro" madera="roble"/>
+        <encimera id="b1" color="negro" madera="roble"/>
+        <encimera id="a2" color="verde" madera="encina"/>
+        <mesa id="b2" color="blanco" madera="pino"/>
+        <mesa id="b3" color="negro" madera="melamina"/>
+    </cocina>
+    <salon numhabitacion="S1">
+        <sofa id="c3" color="marron" madera="nogal" imagen="PNG"/>
+        <silla id="d4" color="verde" madera="encina"/>
+    </salon>
+    <dormitorio numhabitacion="D1">
+        <cama id="e5" color="marron" madera="contrachapado">
+            El colchon va &dondeVa;
+        </cama>
+
+    </dormitorio>
+    <facturas>
+        <factura articulos="a1 a2 b3" habitacion="D1" telefono="667667667" caja="b" />
+        <factura articulos="a1 c3 e5" telefono="667667667" caja="a" />
+    </facturas>
+</almacen>

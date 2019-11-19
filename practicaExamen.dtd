@@ -1,0 +1,34 @@
+  <!NOTATION JPG SYSTEM "image/jpeg">
+  <!NOTATION GIF SYSTEM "image/gif">
+  <!NOTATION PNG SYSTEM "image/png">
+
+<!ELEMENT almacen (cocina, salon, dormitorio, facturas)>
+<!ELEMENT cocina (campana+, encimera*, mesa*, alacena?)*>
+<!ATTLIST cocina numhabitacion ID #REQUIRED>
+<!ENTITY % caracteristicas "id  ID #REQUIRED
+                            color CDATA #IMPLIED
+                            madera CDATA #IMPLIED">
+<!ELEMENT campana EMPTY>
+<!ATTLIST campana %caracteristicas;>
+<!ELEMENT encimera EMPTY>
+<!ATTLIST encimera %caracteristicas;>
+<!ELEMENT mesa EMPTY>
+<!ATTLIST mesa %caracteristicas;>
+<!ELEMENT salon (sofa, silla)>
+<!ATTLIST salon numhabitacion ID #REQUIRED>
+<!ELEMENT sofa EMPTY>
+<!ATTLIST sofa %caracteristicas;
+                 imagen NOTATION (GIF | JPG | PNG) #IMPLIED>
+<!ELEMENT silla EMPTY>
+<!ATTLIST silla %caracteristicas;>
+<!ELEMENT dormitorio (cama | litera)>
+<!ATTLIST dormitorio numhabitacion ID #REQUIRED>
+<!ELEMENT cama (#PCDATA)>
+<!ENTITY dondeVa 'a parte de esta factura'>
+<!ATTLIST cama %caracteristicas;>
+<!ELEMENT facturas (factura+)>
+<!ELEMENT factura EMPTY>
+<!ATTLIST factura articulos IDREFS #REQUIRED
+                    habitacion IDREF #IMPLIED
+                    telefono NMTOKEN #FIXED '667667667'
+                    caja (a | b | c | d) #REQUIRED>

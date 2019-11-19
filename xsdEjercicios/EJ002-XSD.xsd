@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="marvel" type="marvelDerivado" />
+
+  <xs:complexType name="marvelDerivado">
+    <xs:sequence>
+      <xs:element name="superheroe" type="superheroeDerivado"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="superheroeDerivado" >
+    <xs:choice>
+      <xs:element name="poder" type="xs:string" />
+      <xs:element name="color" type="xs:string"/>
+      <xs:element name="procedencia" type="xs:string"/>
+    </xs:choice>
+    <xs:attribute name="nombre"/>
+  </xs:complexType>
+</xs:schema>

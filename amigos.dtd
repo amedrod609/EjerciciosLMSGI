@@ -1,0 +1,24 @@
+<!NOTATION JPG SYSTEM "image/jpeg">
+<!NOTATION GIF SYSTEM "image/gif">
+<!NOTATION PNG SYSTEM "image/png">
+
+<!ELEMENT amigos (trabaja?, estudia*, drogadiccion)>
+<!ATTLIST amigos estanAhi CDATA #FIXED 'siempre'>
+<!ELEMENT trabaja (amigo* | amiga)>
+<!ELEMENT amigo EMPTY>
+<!ENTITY % caracteristicas "nombre ID #REQUIRED
+                        colorPelo CDATA #IMPLIED
+                        viveCon IDREF #IMPLIED
+                        coche CDATA #IMPLIED">
+
+<!ATTLIST amigo %caracteristicas; 
+                imagenCoche NOTATION  (GIF | JPG | PNG) #IMPLIED>
+<!ELEMENT estudia (amigo+ | amiga)>
+<!ELEMENT drogadiccion (#PCDATA | droga)*>
+<!ENTITY laDroga "Desde que se fueron a estudiar fuera están así, pero ya parece que levantan cabeza">
+<!ELEMENT droga EMPTY>
+<!ENTITY % caracDroga "nombre ID #REQUIRED
+                        adicto IDREFS #REQUIRED
+                        seQuierenQuitar (si | no) #IMPLIED">
+
+<!ATTLIST droga %caracDroga;>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE avengers SYSTEM "marvel.dtd">
+
+
+<avengers>
+    <superheroes>
+        <superheroe nombre="capitan" color="carne" arma="escudo"/>
+        <superheroe nombre="hulk" color="verde" arma=""/>
+    </superheroes>
+    <supervillanos>
+        <supervillano nombre="thanos" color="lila" arma="guantelete"/>
+        <supervillano nombre="ultron" color="metal" arma=""/>
+    </supervillanos>
+    <peliculas>Se murio el malo al final
+        <pelicula numero="1" fecha="10/10/2008"/>
+        <pelicula numero="2" fecha="4/9/2010"/>
+    </peliculas>
+</avengers>

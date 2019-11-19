@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE amigos SYSTEM "amigos.dtd">
+
+<amigos estanAhi="siempre">
+    <trabaja>
+        <amigo nombre="roldi" colorPelo="marron" coche="BMW" imagenCoche="JPG"/>
+        <amigo nombre="dani" colorPelo="marron" viveCon="silver"/>
+    </trabaja>
+    <estudia>
+        <amigo nombre="silver" colorPelo="rubio" viveCon="dani" coche="peugeot" imagenCoche="PNG"/>
+        <amigo nombre="zanahorio" colorPelo="pelirrojo"/>
+    </estudia>
+    <drogadiccion> &ladroga;
+        <droga nombre="cannabis" adicto="dani zanahorio" seQuierenQuitar="no"/>
+        <droga nombre="diseño" adicto="dani roldi" seQuierenQuitar="si"/>
+    </drogadiccion>
+</amigos>
