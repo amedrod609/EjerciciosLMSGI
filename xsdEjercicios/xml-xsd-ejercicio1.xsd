@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="alumno" type="alumnoDerivado"/>
+ 
+  <!--tipo para alumno-->
+  <xs:complexType name="alumnoDerivado">
+    <xs:sequence>
+      <xs:element name="nombre" type="xs:string"/>
+      <xs:element name="direccion" type="direccionDerivado"/>
+      <xs:element name="telefono" type="xs:positiveInteger"/>
+    </xs:sequence>
+    <xs:attribute name="dni" type="xs:string"/>
+  </xs:complexType>
+
+  <!-- tipo para direccion-->
+  <xs:complexType name="direccionDerivado">
+    <xs:sequence>
+        <xs:element name="calle" type="xs:string"/>
+        <xs:element name="numero" type="xs:string"/>
+        <xs:element name="ciudad" type="xs:string"/>
+        <xs:element name="provincia" type="xs:string"/>
+      </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
