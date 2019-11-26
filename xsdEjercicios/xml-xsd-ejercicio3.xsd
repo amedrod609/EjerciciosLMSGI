@@ -1,4 +1,77 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="marvel" />
+  <xs:element name="factura" type="tipoFactura" />
+  <!-- tipo Factura-->
+  <xs:complexType name="tipoFactura">
+    <xs:sequence>
+        <xs:element name="datos_empresa" type="tipoDatEmpresa"/>
+        <xs:element name="datos_cliente" type="tipoDatCliente"/>
+        <xs:element name="datos_factura" type="tipoDatFactura" />
+      </xs:sequence>
+      <xs:attribute name="n_fac" type="xs:string"/>
+  </xs:complexType>
+
+  <!-- tipo datos repetidos-->
+  <xs:complexType name="tipoDatosRepetidos">
+    <xs:sequence>
+      <xs:element name="nombre" type="xs:string" />
+      <xs:element name="poblacion" >
+        <xs:complexType mixed="true">
+          <xs:attribute name="cod_postal" use="required" type="xs:string" />
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="provincia" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- tipo Datos Empresa-->
+  <xs:complexType name="tipoDatEmpresa">
+   <xs:complexContent>
+     <xs:extension base="tipoDatosRepetidos">
+      <xs:sequence>
+        <xs:element name="dir" type="xs:string" />
+        <xs:element name="cif" type="xs:string" />
+        <xs:element name="telefono" type="xs:string" />
+      </xs:sequence>
+     </xs:extension>
+   </xs:complexContent>
+  </xs:complexType>
+
+  <!-- tipo Datos Cliente-->
+  <xs:complexType name="tipoDatCliente">
+    <xs:complexContent>
+      <xs:extension base="tipoDatosRepetidos">
+        <xs:sequence>
+          <xs:element name="dir_env" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="n_cli" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- tipo Datos Factura-->
+  <xs:complexType name="tipoDatFactura">
+    <xs:sequence>
+      <xs:element name="fecha" type="xs:string"/>
+      <xs:element name="linea" type="tipoLinea" maxOccurs="unbounded"/>
+      <xs:element name="base" type="xs:string"/>
+      <xs:element name="cuota_iva" type="xs:string"/>
+      <xs:element name="total" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="n_ped" type="xs:string" />
+    <xs:attribute name="iva" type="xs:string" />
+    <xs:attribute name="f_pago" type="xs:string" />
+    <xs:attribute name="moneda" type="xs:string" />
+  </xs:complexType>
+
+  <!-- tipo Linea-->
+  <xs:complexType name="tipoLinea">
+    <xs:sequence>
+      <xs:element name="ref" type="xs:string" />
+      <xs:element name="desc" type="xs:string" />
+      <xs:element name="cant" type="xs:string" />
+      <xs:element name="precio" type="xs:string" />
+      <xs:element name="importe" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
 </xs:schema>

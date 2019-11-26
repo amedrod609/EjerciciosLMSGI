@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <factura n_fac="f999" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-xsi:noNamespaceSchemaLocation="datosFactura.xsd"> 
+xsi:noNamespaceSchemaLocation="xml-xsd-ejercicio3.xsd"> 
   <datos_empresa> 
     <nombre>Equipos Digitales S.L.</nombre> 
     <poblacion cod_postal="28043">Madrid</poblacion> 
