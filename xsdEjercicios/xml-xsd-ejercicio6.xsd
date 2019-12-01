@@ -5,8 +5,8 @@
   <xs:complexType name="tipoUsuario">
     <xs:sequence>
       <xs:element name="ultimasSesiones" type="tipoUltimasSesiones"/>
-      <xs:element name="marcadores" type="tipoMarcadores" />
-      <xs:element name="mensajes" />
+      <xs:element name="marcadores" type="tipoMarcadores"/>
+      <xs:element name="mensajes" type="tipoMensajes"/>
     </xs:sequence>
     <xs:attribute name="id" type="tipoID"></xs:attribute>
   </xs:complexType>
@@ -61,9 +61,61 @@
       <xs:pattern value="[0-2][0-9]:[0-5][0-9]"></xs:pattern>
     </xs:restriction>
   </xs:simpleType>
+
   <!-- tipo Marcadores-->
-<complexType name>
+  <xs:complexType name="tipoMarcadores" mixed="true" >
+    <xs:sequence>
+      <xs:element name="marcador"  maxOccurs="unbounded" >
+        <xs:complexType mixed="true">
+            <xs:attribute name="nombre" type="xs:string" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
 
-</complexType>
+  <!-- tipoContenido-->
+  <xs:complexType name="tipoContenido">
+    <xs:sequence>
+      <xs:element name="asunto" type="xs:string"/>
+      <xs:element name="cuerpo" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
 
+  <!-- Tipo Mensajes-->
+  <xs:complexType name="tipoMensajes">
+    <xs:sequence>
+      <xs:element name="mails" type="tipoMails"/>
+      <xs:element name="hangout" type="tipoHangout"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Tipo Mails-->
+  <xs:complexType name="tipoMails">
+    <xs:sequence>
+      <xs:element name="mail" type="tipoMail" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Tipo Mail-->
+  <xs:complexType name="tipoMail">
+    <xs:complexContent>
+      <xs:extension base="tipoContenido">
+        <xs:attribute name="de" type="tipoDE"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- Tipo de-->
+  <xs:simpleType name="tipoDE">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\w+@\w+[.](com|es)"></xs:pattern>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Tipo Hangout-->
+  <xs:complexType name="tipoHangout">
+    <xs:sequence>
+      <xs:element name="mensaje" type="tipoContenido"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
 </xs:schema>
