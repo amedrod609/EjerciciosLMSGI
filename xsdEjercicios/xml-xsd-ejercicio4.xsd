@@ -1,4 +1,20 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="marvel" />
+  <xs:element name="concesionario" type="tipoConcesionario"/>
+  <!-- tipo Concesionario-->
+  <xs:complexType name="tipoConcesionario">
+    <xs:sequence>
+      <xs:element name="modeloCoche" type="tipoModelo" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="tipoModelo" mixed="true">
+    <xs:sequence>
+      <xs:element name="modeloMotor" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="idModeloCoche" ></xs:attribute>
+    <xs:attribute name="idsRefModeloCoche" type="xs:string"></xs:attribute>
+    
+  </xs:complexType>
+
 </xs:schema>
