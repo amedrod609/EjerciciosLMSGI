@@ -1,4 +1,69 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="marvel" />
+  <xs:element name="usuario" type="tipoUsuario" />
+    <!-- Tipo usuario-->
+  <xs:complexType name="tipoUsuario">
+    <xs:sequence>
+      <xs:element name="ultimasSesiones" type="tipoUltimasSesiones"/>
+      <xs:element name="marcadores" type="tipoMarcadores" />
+      <xs:element name="mensajes" />
+    </xs:sequence>
+    <xs:attribute name="id" type="tipoID"></xs:attribute>
+  </xs:complexType>
+  
+  <!-- Restriccion email-->
+  <xs:simpleType name="tipoID">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\w+@(gmail.com|gmail.es)"></xs:pattern>
+    </xs:restriction>
+  </xs:simpleType>
+ 
+  <!-- Tipo ultimas sesiones-->
+  <xs:complexType name="tipoUltimasSesiones">
+    <xs:sequence>
+      <xs:element name="sesion" type="tipoSesion" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- Tipo sesion-->
+  <xs:complexType name="tipoSesion" mixed="true">
+    <xs:sequence>
+      <xs:element name="dispositivo" type="tipoDispositivo" minOccurs="0"></xs:element>
+    </xs:sequence>
+    <xs:attribute name="fecha" type="xs:date"/>
+    <xs:attribute name="hora" type="tipoHora" />
+  </xs:complexType>
+
+  <!-- tipo de Dispositivo-->
+  <xs:complexType name="tipoDispositivo">
+    <xs:attribute name="ip" type="tipoIP" />
+    <xs:attribute name="navegador" type="xs:string" />
+    <xs:attribute name="NAT" type="tipoNAT" />
+  </xs:complexType>
+
+  <!-- restriccion IP-->
+  <xs:simpleType name="tipoIP">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]*[0-9]*[0-9].[0-9]*[0-9]*[0-9].[0-9]*[0-9]*[0-9].[0-9]*[0-9]*[0-9]"></xs:pattern>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- restriccion NAT-->
+  <xs:simpleType name="tipoNAT">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(si|no)"></xs:pattern>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- Restriccion de Fecha-->
+  <xs:simpleType name="tipoHora">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-2][0-9]:[0-5][0-9]"></xs:pattern>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- tipo Marcadores-->
+<complexType name>
+
+</complexType>
+
 </xs:schema>
