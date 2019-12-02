@@ -1,4 +1,173 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="tiendaMascotas" />
+  <xs:element name="tiendaMascotas" type="tipoTienda"/>
+
+  <xs:complexType name="tipoTienda">
+    <xs:sequence>
+      <xs:element name="reptiles" type="tipoReptiles"/>
+      <xs:element name="mamiferos" type="tipoMamiferos"/>
+      <xs:element name="unidadesMedida" type="tipoListaUnidadesJuntas"/>
+      <xs:element name="direccion" type="tipoDatosRepetidos"/>
+      <xs:element name="clientes" type="tipoClientes"/>
+    </xs:sequence>
+    <xs:attribute name="nombre" type="xs:string"/>
+  </xs:complexType>
+
+  <!-- tipo Reptiles-->
+  <xs:complexType name="tipoReptiles">
+    <xs:sequence>
+      <xs:element name="reptil" type="tipoReptil" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- tipo de la Unidad de medida repetida-->
+  <xs:complexType name="tipoUnidad" mixed="true">
+    <xs:attribute name="unidadMedida" type="xs:string"/>
+  </xs:complexType>
+
+  <!-- tipo Reptil-->
+  <xs:complexType name="tipoReptil" mixed="true">
+    <xs:all>
+      <xs:element name="peso" type="tipoRestriccionPesoYLongitud" minOccurs="0"/>
+      <xs:element name="longitud" type="tipoRestriccionLongitudYUnidadDeMedida" minOccurs="0"/>
+      <xs:element name="edad" type="tipoUnidad" minOccurs="0"/>
+    </xs:all>
+  </xs:complexType>
+
+  <!-- restriccion de peso y atributo-->
+  <xs:complexType name="tipoRestriccionPesoYLongitud">
+    <xs:simpleContent>
+      <xs:extension base="tipoRestriccionPeso">
+        <xs:attribute name="unidadMedida" type="tipoListaUnidadesJuntas"/>
+      </xs:extension>
+     </xs:simpleContent>
+  </xs:complexType>
+  
+
+  <!-- restriccion en el mixto de longitud-->
+  <xs:simpleType name="tipoRestriccionLongitud">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="1"/>
+      <xs:maxInclusive value="800"></xs:maxInclusive>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- restriccion de peso que extiende de restriccion de longitud-->
+  <xs:simpleType name="tipoRestriccionPeso">
+    <xs:restriction base="tipoRestriccionLongitud">
+      <xs:minInclusive value="1"/>
+      <xs:maxInclusive value="200"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- restriccion de medida y ademas la longitud-->
+  <xs:complexType name="tipoRestriccionLongitudYUnidadDeMedida">
+    <xs:simpleContent>
+      <xs:extension base="tipoRestriccionLongitud">
+        <xs:attribute name="unidadMedida" type="tipoListaUnidadesJuntas"></xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <!-- tipo Mamiferos-->
+  <xs:complexType name="tipoMamiferos">
+    <xs:sequence>
+      <xs:element name="mamifero" type="tipoMamifero" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- tipo Mamifero-->
+  <xs:complexType name="tipoMamifero" mixed="true">
+    <xs:sequence>
+      <xs:element name="nombre" type="tipoNombre"/>
+      <xs:element name="raza" type="tipoRaza"/>
+      <xs:element name="descripcion" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="codigo">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:pattern value="[A-Z]{3}-[(][0-9]{5}[)]"></xs:pattern>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+
+  <!-- tipoNombre-->
+  <xs:complexType name="tipoNombre">
+    <xs:attribute name="valor" type="xs:string"/>
+  </xs:complexType>
+
+  <!-- tipo Valor-->
+  <xs:simpleType name="tipovalor">
+    <xs:restriction base="xs:string">
+      <xs:pattern value=".*"></xs:pattern>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- tipo Raza-->
+  <xs:complexType name="tipoRaza">
+    <xs:choice>
+      <xs:element name="perro"/>
+      <xs:element name="orca"/>
+      <xs:element name="delfin"/>
+    </xs:choice>
+  </xs:complexType>
+
+  <!-- tipo Direccion-->
+  <xs:complexType name="tipoDatosRepetidos">
+    <xs:sequence>
+      <xs:element name="postal" type="xs:string"/>
+      <xs:element name="telefono" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- tipo Clientes-->
+  <xs:complexType name="tipoClientes">
+    <xs:sequence>
+      <xs:element name="cliente" type="tipoCliente"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <!-- tipo Cliente-->
+  <xs:complexType name="tipoCliente" >
+    <xs:complexContent>
+      <xs:extension base="tipoDatosRepetidos">
+        <xs:sequence>
+          <xs:element name="email" type="xs:string"/>
+        </xs:sequence>
+        <xs:attribute name="nombre" type="xs:string"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <!-- tipo Unidades de Longitud y Peso-->
+  <xs:simpleType name="tipoUnidadesLongitudYPeso">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="mm"/>
+      <xs:enumeration value="cm"/>
+      <xs:enumeration value="dm"/>
+      <xs:enumeration value="m"/>
+      <xs:enumeration value="kg"/>
+      <xs:enumeration value="Kg"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- tipo unidades de Tiempo-->
+  <xs:simpleType name="tipoUnidadesTiempo">
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="dias"/>
+        <xs:enumeration value="semanas"/>
+        <xs:enumeration value="meses"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- tipo unidades junticas-->
+  <xs:simpleType name="tipoUnidadesJuntas">
+    <xs:union memberTypes="tipoUnidadesLongitudYPeso tipoUnidadesTiempo" />
+  </xs:simpleType>
+
+  <!-- tipo Lista unidades-->
+  <xs:simpleType name="tipoListaUnidadesJuntas">
+    <xs:list itemType="tipoUnidadesJuntas"/>
+  </xs:simpleType>
+
 </xs:schema>
