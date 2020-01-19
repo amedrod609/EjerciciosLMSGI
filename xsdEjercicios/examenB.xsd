@@ -1,3 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="youtube" type="tipoYoutube"/>
+    <xs:complexType name="tipoYoutube">
+        <xs:sequence>
+            <xs:element name="videos" type="tipoVideos"/>
+            <xs:element name="publicidad"/>
+            <xs:element name="idiomasDisponibles" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tipoVideos">
+        <xs:sequence>
+            <xs:element name="video" type="tipoVideo"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tipoVideo" mixed="true">
+        <xs:sequence>
+            <xs:element name="url" type="xs:string"/>
+            <xs:element name="visualizaciones" type="xs:integer"/>
+            <xs:element name="comentarios" type="tipoComentarios"/>
+            <xs:element name="subscriptores" type="tipoSubscriptores"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tipoComentarios">
+        <xs:sequence>
+            <xs:element name="buenos" type="xs:string"/>
+            <xs:element name="malos" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tipoSubscriptores">
+        <xs:sequence>
+            <xs:element name="subscriptor" type="tipoSubscriptor"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="tipoSubscriptor">
+        <xs:sequence>
+            <xs:element name="fechaSubscripcion">
+                <xs:complexType>
+                    <xs:attribute name="dia" type="xs:string"/>
+                    <xs:attribute name="mes" type="xs:string"/>
+                    <xs:attribute name="anyo" type="xs:string"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="comentarios">
+                <xs:complexType>
+                    <xs:attribute name="cantidad" type="xs:string"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="codigo" type="tipoCodigo"/>
+    </xs:complexType>
 </xs:schema>
