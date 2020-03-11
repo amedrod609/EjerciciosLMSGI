@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+body{
+    background-color: lightgrey;
+    font-family: 'Open Sans', sans-serif;
+}
+/* Top Menu*/
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    }
+#logo{
+    width: 3em;
+    height: 3em;
+    
+}
+
+#peliculas{
+    background: rgb(126, 126, 126);
+    color: rgb(0, 0, 0);
+}
+
+  
+  .menu {
+  background-color: rgb(51, 51, 51);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  }
+  
+  .menu li {
+  height: 3em;
+  background-color: rgb(51, 51, 51);
+  transition: 0.25s;
+  padding-left: 10px;
+  padding-right: 10px;
+  vertical-align: middle;
+  display: table-cell;
+  color: #fff;
+  list-style: none;
+  cursor: pointer;
+  }
+  .menu li a:link{
+    text-decoration: none;
+    color: white;
+  }
+  .menu li a:visited{
+    text-decoration: none;
+    color: white;
+  }
+  
+  .menu li:hover {
+  background: #000!important;
+  }
+  
+  .menu ul {
+  display: none;
+  position: absolute;
+  background: white;
+  color: #fff;
+  margin: 0 auto;
+  margin-top: 1em;
+  box-shadow: 1px 1px 1px black;
+  }
+  
+  .menu ul li {
+  display: table-cell;
+  vertical-align: middle;
+  color: #fff;
+  padding: 5px 10px 5px 10px;
+  }
+  
+  .menu li:hover ul ul,
+  .menu li:hover ul ul ul {
+  display: none;
+  }
+  
+  .menu li:hover ul,
+  .menu ul li:hover ul,
+  .menu ul ul li:hover ul {
+  display: table-cell;
+  margin-left: -10px;
+  }
+
+
+/*Page content*/
+/* Card Decoration*/
+img{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+}
+#divPrincipal{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.containerTitle{
+    margin-top: 0;
+    font-size:  1.5em;
+    font-weight: bold;
+    text-align: center;
+}
+.title{
+    font-size: 140%;
+    font-weight: bold;
+    color: black;
+    padding-bottom: 5%;
+    text-align: left;
+}
+.imagen{
+    width: 100%;
+    height: 50%;
+    
+}
+.text_and_link{
+    width: 100%;
+    height: 50%;
+    display: block;
+    justify-content: center;
+    align-items: center;
+  
+}
+.text{
+    padding: 3%;
+    display: inline-block;
+    width: 90%;
+    text-align: justify;
+    color: gray;
+}
+.link{
+    margin-top: 5%;
+    margin-bottom: 2%;
+    margin-left: 3%;
+    height: 60%;
+}
+hr{
+    width: 90%;
+    margin: 0 auto;
+    border-top: 1.5px solid gray;
+}
+button{
+    padding: 2%;
+    width: 30%;
+    border-radius: 0.5em;
+    background-color: rgb(21, 21, 21);
+    border: none;
+    font-weight: bold;
+    color: white;
+}
+button:hover{
+    background-color:rgb(48, 48, 48);
+}
+
+
+.contenedorTarjetas{
+    
+    margin-top: 3em;
+    width: 100%;
+    
+}
+
+.tarjeta{
+    display: inline-block;
+    border-radius: 0.5em;
+    background-color: white;
+    margin-top: 2%;
+   
+}
+
+/*.tarjetaUnTercio{
+    
+    width: 27%;
+    
+    
+}*/

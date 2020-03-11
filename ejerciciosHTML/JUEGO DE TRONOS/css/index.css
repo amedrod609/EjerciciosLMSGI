@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+body{
+    background-color: lightgrey;
+    font-family: 'Open Sans', sans-serif;
+}
+img{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border-top-left-radius: 1%;
+    border-top-right-radius: 1%;
+}
+#divPrincipal{
+    width: 80%;
+    margin: 0 auto;
+}
+#banner{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.containerTitle{
+    margin-top: 1%;
+    font-size:  150%;
+    font-weight: bold;
+    text-align: center;
+}
+.title{
+    font-size: 140%;
+    font-weight: bold;
+    color: black;
+    padding-bottom: 5%;
+    text-align: left;
+}
+.imagen{
+    width: 100%;
+    height: 50%;
+    
+}
+.text_and_link{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+.text{
+    padding: 3%;
+    display: inline-block;
+    width: 65%;
+    text-align: justify;
+    color: gray;
+}
+.link{
+    display: inline-block;
+    width: 25%;
+    padding: 1%;
+    
+
+    
+}
+
+.contenedorTarjetas{
+    margin-left: 4.9%;
+    margin-top: 1%;
+    width: 100%;
+    
+}
+
+.tarjeta{
+    display: inline-block;
+    border-radius: 1%;
+    background-color: white;
+    margin-top: 2%;
+   
+}
+
+.tarjetaUnTercio{
+    
+    width: 30%;
+    
+    
+}
+.tarjetaUnCuarto{
+    width: 22.4%;
+   
+}
+
+.tarjetaUnQuinto{
+    width: 18%;
+}
+
+.imagenAnchoCompleto{
+    width: 100%;
+}

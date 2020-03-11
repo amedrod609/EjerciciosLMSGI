@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  }
+
+  /* Top Menu*/
+  #logo{
+    width: 3em;
+    height: 3em;
+    
+  }
+  
+  #menu {
+  background-color: rgb(51, 51, 51);
+  height: 3em;
+  width: 100%;
+  position: fixed;
+  }
+  
+  #menu li {
+  height: 3em;
+  background-color: rgb(51, 51, 51);
+  transition: 0.25s;
+  padding-left: 10px;
+  padding-right: 10px;
+  vertical-align: middle;
+  display: table-cell;
+  color: #fff;
+  list-style: none;
+  cursor: pointer;
+  }
+  #menu li a:link{
+    text-decoration: none;
+    color: white;
+  }
+  #menu li a:visited{
+    text-decoration: none;
+    color: white;
+  }
+  
+  #menu li:hover {
+  background: #000!important;
+  }
+  
+  #menu ul {
+  display: none;
+  position: absolute;
+  top: 3em;
+  background: white;
+  color: #fff;
+  margin: 0;
+  box-shadow: 1px 1px 1px black;
+  }
+  
+  #menu ul li {
+  display: table-cell;
+  vertical-align: middle;
+  color: #fff;
+  padding: 5px 10px 5px 10px;
+  }
+  
+  #menu li:hover ul ul,
+  #menu li:hover ul ul ul {
+  display: none;
+  }
+  
+  #menu li:hover ul,
+  #menu ul li:hover ul,
+  #menu ul ul li:hover ul {
+  display: table-cell;
+  margin-left: -10px;
+  }
+
+  /*Page content*/
+  .main{
+    width: 100%;
+    margin: 0 auto;
+    display: inline-block;
+  }
+  #descripcion{
+    width: 30%;
+    height: 100%;
+    display: inline-block;
+    background-color: red;
+  }
+  #gif{
+    width: 67%;
+    background-color: plum;
+    
+  }
+  
