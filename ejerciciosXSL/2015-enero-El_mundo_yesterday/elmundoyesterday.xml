@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet href="a.xsl" type="text/xsl"?>
+<?xml-stylesheet href="EjerA.xsl" type="text/xsl"?>
 <periodico nombre="El mundo yesterday" logo="http://webdidacticarafaelmunoz.appspot.com/lmsgi/ejercicios-cap5/examen/2015-enero/recursos/el-mundo-yesterday.jpg">
     <menu>
         <enlace href="#">Nacional</enlace>
