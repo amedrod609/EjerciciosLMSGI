@@ -16,53 +16,66 @@
           <xsl:value-of select="titulo/@nombre"/>
         </h2>
         <h3>
-         Estreno:  <xsl:value-of select="/cine/titulo/@estreno"/>
+          Estreno:  <xsl:value-of select="/cine/titulo/@estreno"/>
         </h3>
-
         <table width="80%">
           <xsl:for-each select="sesiones/sesion">
             <tr>
               <td align="center">
-                <xsl:choose>
-                  <xsl:when test="position() mod 2 = 1">
-                    <xsl:attribute name="style">background: #5d9ede;</xsl:attribute>
-                  </xsl:when>
-                </xsl:choose>
-                Sesión: 
-                <xsl:value-of select="position()"/>
-                - Hora: 
-                <xsl:value-of select="@hora"/>
+                <xsl:call-template name="FondoColor"/>
+                <xsl:call-template name="sesionHora"/>
                 <table width="50%">
                   <xsl:call-template name="bucleForFila">
                     <xsl:with-param name="i">1</xsl:with-param>
                   </xsl:call-template>
                 </table>
-                </td>
+              </td>
             </tr>
-            <br/>   
+            <br/>
           </xsl:for-each>
         </table>
         <br/>
         <h2>Otras películas</h2>
         <table>
-          
-            <xsl:for-each select="cartelera/pelicula">
-              <xsl:variable name="peliNombre"><xsl:value-of select="@id"/></xsl:variable>
-              <tr>
-              <td>
-                <img src="{/cine/imagenes/imagen[@id = $peliNombre]/.}"/>
-              </td>
-              <td>
-                <xsl:value-of select="@nombre"/>
-              </td>
-              </tr>
-            </xsl:for-each>
-          
+          <xsl:call-template name="carteleraProxima"/>
         </table>
       </body>
     </html>
   </xsl:template>
-  
+
+  <xsl:template name="sesionHora">
+    Sesión:
+    <xsl:value-of select="position()"/>
+    - Hora:
+    <xsl:value-of select="@hora"/>
+  </xsl:template>
+
+  <xsl:template name="carteleraProxima">
+
+    <xsl:for-each select="cartelera/pelicula">
+      <xsl:variable name="peliNombre">
+        <xsl:value-of select="@id"/>
+      </xsl:variable>
+      <tr>
+        <td>
+          <img src="{/cine/imagenes/imagen[@id = $peliNombre]/.}"/>
+        </td>
+        <td>
+          <xsl:value-of select="@nombre"/>
+        </td>
+      </tr>
+    </xsl:for-each>
+
+  </xsl:template>
+
+  <xsl:template name="FondoColor">
+    <xsl:choose>
+      <xsl:when test="position() mod 2 = 1">
+        <xsl:attribute name="style">background: #5d9ede;</xsl:attribute>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
 
   <xsl:template name="bucleForFila">
     <xsl:param name="i"/>
@@ -113,11 +126,11 @@
     <xsl:param name="y"/>
     <td>
       <xsl:choose>
-        <xsl:when test="$x = ocupado/@asiento and $y = ocupado/@fila">
+        <xsl:when test="ocupado[$x = @asiento and $y = @fila]">
           <img src="{/cine/imagenes/imagen[@id = 'ocupado']/.}"/>
         </xsl:when>
         <xsl:otherwise>
-          <img src="{/cine/imagenes/imagen[@id = 'libre']/.}"/>     
+          <img src="{/cine/imagenes/imagen[@id = 'libre']/.}"/>
         </xsl:otherwise>
       </xsl:choose>
     </td>
@@ -133,7 +146,7 @@
       }
 
     </style>
-   
+
   </xsl:template>
 
 </xsl:stylesheet>
