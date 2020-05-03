@@ -1,0 +1,12 @@
+.container, .row{
+    height: 200px;
+
+}
+
+.red{
+    background-color: red;
+}
+
+.lightblue{
+    background-color: lightblue;
+}
