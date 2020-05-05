@@ -23,24 +23,42 @@ var WIDTH = 50,
  vy = 0 ,
  gravity = 1;
 
-//Variables para los obstáculos
+/**
+ * Class defined for the obstacles
+ */
 class Cactus{
     constructor(){
         this.x = canvas.width;
         this.y = ALTURA_DEFAULT;
-        this.vx = -7;
+        this.vx = -8;
         this.imgSprite = imgCactus;
     }
 
+    /**
+     * Change the position in every iteration
+     * by substracting a defined quantity
+     * of pixels
+     */
     move(){
         this.x += this.vx;
     }
+    /**
+     * Paint the image previously loaded using ctx
+     */
     paint(){
-      ctx.drawImage(this.imgSprite, this.x, this.y, WIDTH, HEIGHT);
-      /*ctx.fillRect(this.x - 50, this.y, 50, 50);*/
+        //Uncomment to show hitboxes
+
+        //ctx.fillStyle = "#fa8178"
+        //ctx.fillRect(this.x, this.y, 50, 50);
+
+        ctx.drawImage(this.imgSprite, this.x, this.y, WIDTH, HEIGHT);
     }
 }
 
+/**
+ * Class defined for the moving clouds in the background
+ * They behave the same way as the cactus
+ */
 class Cloud{
     constructor(){
         this.x = canvas.width;
@@ -49,31 +67,47 @@ class Cloud{
         this.imgSprite = imgCloud;
     }
 
+    //Returns a random number to give the clouds a bit more 
+    //realism when they spawn
     getRandomY(){
         return Math.round(Math.random()*(120-80)+80);
     }
+
+    //same as cactus, moves a bit every iteration
     move(){
         this.x += this.vx;
     }
+
+    //Paints using dthe ctx object
     paint(){
       ctx.drawImage(this.imgSprite, this.x, this.y, 46, 14);
-      /*ctx.fillRect(this.x - 50, this.y, 50, 50);*/
     }
 }
+
 //Punto de partida de la ejecución
 function init(){
-preloadImages();
+    //Asyncronous image loading
+    //if this isn't done, there may be problems
+    //with larger images
+    preloadImages();
 
-//Obtener el canvas
- canvas = document.getElementById('canvas');
- //Obtener la brocha
- ctx = canvas.getContext("2d");
+    //Obtener el canvas
+    canvas = document.getElementById('canvas');
 
- document.addEventListener("keypress", jump);
- 
- gameLoop()
+    //Obtener la brocha
+    ctx = canvas.getContext("2d");
+
+    //Detects the letter key pess and calls the function jump
+    document.addEventListener("keypress", jump);
+    
+    //Begins the game loop
+    gameLoop()
 }
 
+/**
+ * Loads images from a local folder and increments a var
+ * the images don't load if there is any problem loading them
+ */
 function preloadImages(){
     imgPlayer = new Image();
     imgPlayer.src = 'res/dino_Sprite.png';
@@ -112,19 +146,33 @@ function paintGame(){
     ctx.lineWidth = 0.5;
     ctx.stroke();
 
-    
+    //If all images al loaded, this paint every entity needed
     if (imgCargadas == 4) {
-    paintPlayer();
-    paintAndMoveItems()
-       
+    
+        paintAndMoveItems()
+        paintPlayer();
     }
 }
 
 function paintPlayer(){
 
- ctx.drawImage(imgPlayer, x, y, WIDTH, HEIGHT);
+    //Uncomment to show hitboxes
+    //ctx.fillStyle = "#6ea3cc"
+    //ctx.fillRect(this.x, this.y, 50, 50);
+
+    //Paints the given image
+    ctx.drawImage(imgPlayer, x, y, WIDTH, HEIGHT);
+
 }
 
+/**
+ * Moves de player up and down by adding the vy value
+ * vy is 0 by default, so the player doesn't move
+ * Up if the jump function is called, vy changes to a negative value
+ * Down because vy is being added de value of gravity.
+ * When jump is called moves fast upwards but it slowly decreases speed
+ * acording to vy, until it reaches 0, the upper point and then goes down 
+ */
 function move(){
     y += vy;
     vy += gravity;
@@ -134,19 +182,28 @@ function move(){
    
 }
 
+/**
+ * Changes the value of vy
+ */
 function jump() {
     if (y == ALTURA_DEFAULT) {
-        vy = -12;    
+        vy = -15;    
     }
     
 }
 
+/**
+ * Creates and pushes a new object in it's respective array
+ * when a random number is under the given number
+ * you can get more o less objects by changing the if condition
+ */
 function getTransitoryItems(){
-    if (Math.random()<0.01) {
+    //Adds obstacles
+    if (Math.random()<0.008) {
         cacti.push(new Cactus())
     }
-
-    if (Math.random()<0.005) {
+    //Adds nice and decorative clouds
+    if (Math.random()<0.001) {
         clouds.push(new Cloud())
     }
 }
@@ -170,30 +227,32 @@ function paintAndMoveItems(){
  * the canvas
  */
 function deleteUsedItems(){
-   for (let i = 0; i < cacti.length; i++) {
-    
-    if (cacti[i].x < 0 - WIDTH) {
-        cacti.shift();
-    }   
-   }
-   for (let i = 0; i < clouds.length; i++) {
-    
-    if (clouds[i].x < 0 - WIDTH) {
-        clouds.shift();
-    }   
-   }
+    //Deletes obstacles
+    for (let i = 0; i < cacti.length; i++) {
+        
+        if (cacti[i].x < 0 - WIDTH) {
+            cacti.shift();
+        }   
+    }
+
+    //Deletes nice and decorative clouds
+    for (let i = 0; i < clouds.length; i++) {
+        
+        if (clouds[i].x < 0 - WIDTH) {
+            clouds.shift();
+        }   
+    }
 }
 
 /**
  * Checks for collisions using the obstacles coords
  * and the player coords
- * 
- * 
  */
 function getCollisions() {
     for (let i = 0; i < cacti.length; i++) {
-        if (cacti[i].x < x + WIDTH &&
-            cacti[i].y < y + HEIGHT) {
+        if (cacti[i].x + WIDTH > x &&
+            cacti[i].x < x + WIDTH &&
+            cacti[i].y < y + WIDTH) {
             
                 esFinDeJuego = true;
         }
@@ -201,10 +260,13 @@ function getCollisions() {
     }
 }
 
+//Calls the loop function or paints the Game Over image if the player loses
 function gameEngine() {
+    //Calls the loop
     if (!esFinDeJuego) {
         window.requestAnimationFrame(gameLoop);
     }
+    //Paints Game Over
     else{
         ctx.drawImage(imgGameOver, (canvas.width/2 - imgGameOver.width/2), (canvas.height/2 - imgGameOver.height/2) )
     }
@@ -216,13 +278,12 @@ function gameEngine() {
  */
 function gameLoop(){
 
-
-
-    
-
     move();
     getTransitoryItems();
-    getCollisions();
+
+    //Coment to let the game run painlessly
+    //getCollisions();
+
     paintGame();
 
     deleteUsedItems();

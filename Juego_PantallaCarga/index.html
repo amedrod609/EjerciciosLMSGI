@@ -14,6 +14,9 @@
         $(document).ready(function () {
           $("#juego").click(function(){
             init();
+          $("#reload").click(function () {
+            location.reload();
+          })
           })
         });
     </script>
@@ -38,7 +41,8 @@
                 
             </div>
             <div class="col">
-              <button type="button" name="" id="juego" class="btn btn-primary">Empezar</button>
+              <button type="button"  id="juego" class="btn btn-primary">Empezar</button>
+              <button type="button" id="reload" class="btn btn-primary">Recargar</button>
             </div>
 
         </div>
